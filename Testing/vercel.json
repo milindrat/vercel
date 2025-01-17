@@ -19,7 +19,7 @@
     "rewrites": [
         {
         "source": "/(.*)",
-         "destination": "myapp/home.html" 
+         "destination": "/home.html" 
         }
       ]
   }
