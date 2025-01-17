@@ -15,6 +15,12 @@
         "src": "/(.*)",
         "dest": "Testing/wsgi.py"
       }
-    ]
+    ],
+    "rewrites": [
+        {
+          "source": "/api/:path*",
+          "destination": "/api/index.js"
+        }
+      ]
   }
   
