@@ -18,8 +18,8 @@
     ],
     "rewrites": [
         {
-          "source": "/api/:path*",
-          "destination": "/api/index.js"
+        "source": "/(.*)",
+         "destination": "myapp/home.html" 
         }
       ]
   }
