@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     'localhost',  # Local development
     '127.0.0.1',  # Local development
     '.ngrok-free.app',  # Allow all subdomains of ngrok-free.app (for testing)
+    'salesorder.onrender.com',
 ]
 
 
