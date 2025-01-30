@@ -26,7 +26,12 @@ SECRET_KEY = 'django-insecure-0uj*1duqb#xba8h=3ej24xijq)+b4=z=!wm!d1$v9#vfowj7fn
 DEBUG = True
 
 #ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    '273b-182-72-139-146.ngrok-free.app',  # For a specific ngrok URL
+    'localhost',  # Local development
+    '127.0.0.1',  # Local development
+    '.ngrok-free.app',  # Allow all subdomains of ngrok-free.app (for testing)
+]
 
 
 # Application definition
@@ -39,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhitenoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Testing.urls'
@@ -75,10 +82,30 @@ WSGI_APPLICATION = 'Testing.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+'''
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'mssql',   #'sql_server.pyodbc'   'mssql',
+        'NAME': 'IMDB_DXP_JORDAN',
+        'USER': 'sa',
+        'PASSWORD': 'CcwZMvGbAnxWg4c$',
+        'HOST': '45.249.111.177,12444',  # Set to empty string for localhost
+        'PORT': '',  # Set to empty string for default
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',  # Make sure the driver is installed
+            'extra_params': 'TrustServerCertificate=yes;',  # Optional: other ODBC connection options
+            'conn_max_age': 600,  # Maximum age of a connection in seconds (10 minutes)
+            'timeout': 20,  # Connection timeout in seconds
+        },
     }
 }
 
@@ -126,3 +153,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DATE_INPUT_FORMATS = ['%d-%m-%Y', '%Y-%m-%d']
