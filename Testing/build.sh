@@ -1,8 +1,11 @@
+#!/bin/bash
+set -o errexit   # Exit on the first error
 
-set -o errexit
+# Install dependencies from requirements.txt
+pip install -r requirements.txt
 
-pip install -r requiremetns.txt
+# Collect static files without prompting for input
+python manage.py collectstatic --no-input
 
-py manage.py collectstatic --no-input
- 
-py manage.py migrate 
+# Apply database migrations
+python manage.py migrate
