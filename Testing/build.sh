@@ -9,3 +9,5 @@ python manage.py collectstatic --no-input
 
 # Apply database migrations
 python manage.py migrate
+
+exec gunicorn Testing.wsgi:application --bind 0.0.0.0:$PORT
