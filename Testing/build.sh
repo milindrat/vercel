@@ -1,6 +1,7 @@
 #!/bin/bash
 set -o errexit   # Exit on the first error
 
+PORT=${PORT:-8000}
 # Install dependencies from requirements.txt
 pip install -r requirements.txt
 
